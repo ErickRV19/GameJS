@@ -1,0 +1,14 @@
+.logo {
+    width: 35%;
+    height: auto;
+}
+
+.jumbotron {
+    background-color: black;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.jumbotron-heading {
+    color: #ffffff;
+}
