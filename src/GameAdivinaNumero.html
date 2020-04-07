@@ -3,51 +3,34 @@
 
 <head>
     <meta charset="utf-8">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Adivina el numero </title>
-
-    <style>
-        html {
-            font-family: sans-serif;
-        }
-        
-        body {
-            width: 50%;
-            max-width: 800px;
-            min-width: 480px;
-            margin: 0 auto;
-        }
-        
-        .lastResult {
-            color: white;
-            padding: 3px;
-        }
-        
-        .rank {
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/GameAdivina.css">
 </head>
 
 <body>
-    <h1>Adivina el numero</h1>
+    <div class="card-main">
+        <center>
+            <h1>Adivina el numero</h1>
 
-    <p>Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.</p>
+            <p>Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.</p>
 
-    <div class="form">
-        <label for="guessField">Enter a guess: </label><input type="number" id="guessField" class="guessField">
-        <p>
-            <input type="submit" value="Submit guess" class="guessSubmit">
+            <div class="form">
+                <label for="guessField">Enter a guess: </label><input type="number" id="guessField" class="guessField">
+                <p>
+                    <input type="submit" value="Submit guess" class="btn guessSubmit">
+            </div>
+
+            <div class="resultParas">
+                <p class="lastResult"></p>
+                <p class="rank"></p>
+                <p class="lowOrHi"></p>
+                <p class="guesses"></p>
+                <br>
+                <p class="countShow"></p>
+            </div>
     </div>
-
-    <div class="resultParas">
-        <p class="lastResult"></p>
-        <p class="rank"></p>
-        <p class="lowOrHi"></p>
-        <p class="guesses"></p>
-        <br>
-        <p class="countShow"></p>
-    </div>
+    </center>
 
     <script>
         let randomNumber = Math.floor(Math.random() * 100) + 1;
