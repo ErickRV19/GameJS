@@ -1,0 +1,29 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    width: 50%;
+    max-width: 800px;
+    min-width: 480px;
+    margin: 0 auto;
+    background-image: url(/img/juego\ memoria.png);
+}
+
+.card-main {
+    background-color: white;
+    padding: 7%;
+}
+
+.guessSubmit {
+    background-color: #de7119;
+}
+
+.lastResult {
+    color: white;
+    padding: 3px;
+}
+
+.rank {
+    color: white;
+}
