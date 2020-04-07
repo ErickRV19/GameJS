@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Adivina el numero </title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+        
+        .rank {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adivina el numero</h1>
+
+    <p>Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.</p>
+
+    <div class="form">
+        <label for="guessField">Enter a guess: </label><input type="number" id="guessField" class="guessField">
+        <p>
+            <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+        <p class="lastResult"></p>
+        <p class="rank"></p>
+        <p class="lowOrHi"></p>
+        <p class="guesses"></p>
+        <br>
+        <p class="countShow"></p>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        const guesses = document.querySelector('.guesses');
+        const countShow = document.querySelector('.countShow');
+        const lastResult = document.querySelector('.lastResult');
+        const lowOrHi = document.querySelector('.lowOrHi');
+        const rank = document.querySelector('.rank');
+
+        const guessSubmit = document.querySelector('.guessSubmit');
+        const guessField = document.querySelector('.guessField');
+
+        let guessCount = 1;
+        let resetButton;
+        guessField.focus();
+
+        function checkGuess() {
+            let userGuess = Number(guessField.value);
+
+            if (guessCount === 1) {
+                guesses.textContent = 'Los numeros con los que has intentado: ';
+            }
+
+            guesses.textContent += userGuess + ' || ';
+
+            if (userGuess === randomNumber) {
+                lastResult.textContent = '¡Felicidades! ¡Lo adivinaste!';
+                lastResult.style.backgroundColor = 'green';
+                lowOrHi.textContent = '';
+                setGameOver();
+            } else if (guessCount === 10) {
+                lastResult.textContent = '!!!¡¡¡Fin del juego!!!!!!';
+                setGameOver();
+            } else {
+                lastResult.textContent = '¡Equivocado!';
+                lastResult.style.backgroundColor = 'red';
+                if (userGuess < randomNumber) {
+                    lowOrHi.textContent = '¡El numero es muy bajo!!';
+                } else if (userGuess > randomNumber) {
+                    lowOrHi.textContent = '¡El numero es muy grande!';
+                }
+            }
+            if (userGuess < 0 || userGuess > 100) {
+                rank.textContent = 'Recuerda que el numero esta entre el o y 100';
+                rank.style.backgroundColor = 'red';
+            }
+
+            guessCount++;
+            guessField.value = '';
+            guessField.focus();
+
+            if (guessCount <= 10) {
+                countShow.textContent = 'Te quedan ' + (11 - guessCount) + ' intentos.';
+                countShow.style.backgroundColor = 'yellow';
+            }
+
+        }
+        guessSubmit.addEventListener('click', checkGuess);
+
+        function setGameOver() {
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            resetButton = document.createElement('button');
+            resetButton.textContent = 'Iniciar nuevo juego';
+            document.body.appendChild(resetButton);
+            resetButton.addEventListener('click', resetGame);
+        }
+
+        function resetGame() {
+            guessCount = 1;
+
+            const resetParas = document.querySelectorAll('.resultParas p');
+            for (let i = 0; i < resetParas.length; i++) {
+                resetParas[i].textContent = '';
+            }
+
+            resetButton.parentNode.removeChild(resetButton);
+
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
+
+            lastResult.style.backgroundColor = 'white';
+
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+        }
+    </script>
+</body>
+
+</html>
