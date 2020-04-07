@@ -7,16 +7,23 @@ body {
     max-width: 800px;
     min-width: 480px;
     margin: 0 auto;
-    background-image: url(/img/juego\ memoria.png);
+    background-image: url(/img/giphy.gif);
 }
 
 .card-main {
-    background-color: white;
+    color: aliceblue;
+    background-color: black;
     padding: 7%;
+    margin: 3em;
+}
+
+#secBoton {
+    padding: 5%;
 }
 
 .guessSubmit {
-    background-color: #de7119;
+    background-color: #8000ff;
+    color: white;
 }
 
 .lastResult {
@@ -26,4 +33,8 @@ body {
 
 .rank {
     color: white;
+}
+
+.resett {
+    color: #000000;
 }
