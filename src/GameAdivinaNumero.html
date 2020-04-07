@@ -16,9 +16,12 @@
             <p>Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.</p>
 
             <div class="form">
-                <label for="guessField">Enter a guess: </label><input type="number" id="guessField" class="guessField">
-                <p>
-                    <input type="submit" value="Submit guess" class="btn guessSubmit">
+                <label for="guessField">¿Que numero crees que es ? </label>
+                <p></p>
+                <input type="number" id="guessField" class="guessField">
+                <p id="secBoton">
+                    <input type="submit" value="Probar suerte" class="btn guessSubmit">
+                </p>
             </div>
 
             <div class="resultParas">
@@ -28,7 +31,9 @@
                 <p class="guesses"></p>
                 <br>
                 <p class="countShow"></p>
+
             </div>
+            <input type="submit" value="Reiniciar" class="btn resett">
     </div>
     </center>
 
@@ -43,6 +48,9 @@
 
         const guessSubmit = document.querySelector('.guessSubmit');
         const guessField = document.querySelector('.guessField');
+        const resett = document.querySelector('.resett');
+
+        resett.disabled = true;
 
         let guessCount = 1;
         let resetButton;
@@ -52,7 +60,7 @@
             let userGuess = Number(guessField.value);
 
             if (guessCount === 1) {
-                guesses.textContent = 'Los numeros con los que has intentado: ';
+                guesses.textContent = 'Numeros que has intentado: ';
             }
 
             guesses.textContent += userGuess + ' || ';
@@ -85,19 +93,18 @@
 
             if (guessCount <= 10) {
                 countShow.textContent = 'Te quedan ' + (11 - guessCount) + ' intentos.';
-                countShow.style.backgroundColor = 'yellow';
+                countShow.style.backgroundColor = '#0000ff';
             }
 
         }
         guessSubmit.addEventListener('click', checkGuess);
 
         function setGameOver() {
+            resett.disabled = false;
             guessField.disabled = true;
             guessSubmit.disabled = true;
-            resetButton = document.createElement('button');
-            resetButton.textContent = 'Iniciar nuevo juego';
-            document.body.appendChild(resetButton);
-            resetButton.addEventListener('click', resetGame);
+            resett.style.backgroundColor = 'yellow';
+            resett.addEventListener('click', resetGame);
         }
 
         function resetGame() {
@@ -108,14 +115,14 @@
                 resetParas[i].textContent = '';
             }
 
-            resetButton.parentNode.removeChild(resetButton);
-
+            resett.style.backgroundColor = 'black';
+            resett.disabled = true;
             guessField.disabled = false;
             guessSubmit.disabled = false;
             guessField.value = '';
             guessField.focus();
 
-            lastResult.style.backgroundColor = 'white';
+            lastResult.style.backgroundColor = 'black';
 
             randomNumber = Math.floor(Math.random() * 100) + 1;
         }
