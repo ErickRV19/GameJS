@@ -7,7 +7,7 @@ body {
     max-width: 800px;
     min-width: 480px;
     margin: 0 auto;
-    background-image: url(/img/giphy.gif);
+    background-image: url(img/giphy.gif);
 }
 
 .card-main {
