@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Adivina el numero </title>
-    <link rel="stylesheet" href="css/GameAdivina.css">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <title>Adivina el numero</title>
+    <link rel="stylesheet" href="../css/GameAdivina.css" />
 </head>
 
 <body>
@@ -13,14 +13,16 @@
         <center>
             <h1>Adivina el numero</h1>
 
-            <p>Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.</p>
+            <p>
+                Nosotros seleccionaremos un numero al azar entre el 1 y el 100 . ¿ Podras conseguirlo en 10 turnos o menos ?. No te preocupes no sera tan dificil nosotros te diremos si estas cerca.
+            </p>
 
             <div class="form">
                 <label for="guessField">¿Que numero crees que es ? </label>
                 <p></p>
-                <input type="number" id="guessField" class="guessField">
+                <input type="number" id="guessField" class="guessField" />
                 <p id="secBoton">
-                    <input type="submit" value="Probar suerte" class="btn guessSubmit">
+                    <input type="submit" value="Probar suerte" class="btn guessSubmit" />
                 </p>
             </div>
 
@@ -29,30 +31,30 @@
                 <p class="rank"></p>
                 <p class="lowOrHi"></p>
                 <p class="guesses"></p>
-                <br>
+                <br />
                 <p class="countShow"></p>
-
             </div>
-            <input type="submit" value="Reiniciar" class="btn resett">
+            <input type="submit" value="Reiniciar" class="btn resett" />
         </center>
         <div class="final-content">
-
-            <button type="button" class="btn regresar" onclick="location.href='index.html'">Regresar al inicio</button>
+            <button type="button" class="btn regresar" onclick="location.href='../index.html'">
+          Regresar al inicio
+        </button>
         </div>
     </div>
 
     <script>
         let randomNumber = Math.floor(Math.random() * 100) + 1;
 
-        const guesses = document.querySelector('.guesses');
-        const countShow = document.querySelector('.countShow');
-        const lastResult = document.querySelector('.lastResult');
-        const lowOrHi = document.querySelector('.lowOrHi');
-        const rank = document.querySelector('.rank');
+        const guesses = document.querySelector(".guesses");
+        const countShow = document.querySelector(".countShow");
+        const lastResult = document.querySelector(".lastResult");
+        const lowOrHi = document.querySelector(".lowOrHi");
+        const rank = document.querySelector(".rank");
 
-        const guessSubmit = document.querySelector('.guessSubmit');
-        const guessField = document.querySelector('.guessField');
-        const resett = document.querySelector('.resett');
+        const guessSubmit = document.querySelector(".guessSubmit");
+        const guessField = document.querySelector(".guessField");
+        const resett = document.querySelector(".resett");
 
         resett.disabled = true;
 
@@ -64,69 +66,69 @@
             let userGuess = Number(guessField.value);
 
             if (guessCount === 1) {
-                guesses.textContent = 'Numeros que has intentado: ';
+                guesses.textContent = "Numeros que has intentado: ";
             }
 
-            guesses.textContent += userGuess + ' || ';
+            guesses.textContent += userGuess + " || ";
 
             if (userGuess === randomNumber) {
-                lastResult.textContent = '¡Felicidades! ¡Lo adivinaste!';
-                lastResult.style.backgroundColor = 'green';
-                lowOrHi.textContent = '';
+                lastResult.textContent = "¡Felicidades! ¡Lo adivinaste!";
+                lastResult.style.backgroundColor = "green";
+                lowOrHi.textContent = "";
                 setGameOver();
             } else if (guessCount === 10) {
-                lastResult.textContent = '!!!¡¡¡Fin del juego!!!!!!';
+                lastResult.textContent = "!!!¡¡¡Fin del juego!!!!!!";
                 setGameOver();
             } else {
-                lastResult.textContent = '¡Equivocado!';
-                lastResult.style.backgroundColor = 'red';
+                lastResult.textContent = "¡Equivocado!";
+                lastResult.style.backgroundColor = "red";
                 if (userGuess < randomNumber) {
-                    lowOrHi.textContent = '¡El numero es muy bajo!!';
+                    lowOrHi.textContent = "¡El numero es muy bajo!!";
                 } else if (userGuess > randomNumber) {
-                    lowOrHi.textContent = '¡El numero es muy grande!';
+                    lowOrHi.textContent = "¡El numero es muy grande!";
                 }
             }
             if (userGuess < 0 || userGuess > 100) {
-                rank.textContent = 'Recuerda que el numero esta entre el o y 100';
-                rank.style.backgroundColor = 'red';
+                rank.textContent = "Recuerda que el numero esta entre el o y 100";
+                rank.style.backgroundColor = "red";
             }
 
             guessCount++;
-            guessField.value = '';
+            guessField.value = "";
             guessField.focus();
 
             if (guessCount <= 10) {
-                countShow.textContent = 'Te quedan ' + (11 - guessCount) + ' intentos.';
-                countShow.style.backgroundColor = '#0000ff';
+                countShow.textContent =
+                    "Te quedan " + (11 - guessCount) + " intentos.";
+                countShow.style.backgroundColor = "#0000ff";
             }
-
         }
-        guessSubmit.addEventListener('click', checkGuess);
+        guessSubmit.addEventListener("click", checkGuess);
 
         function setGameOver() {
             resett.disabled = false;
             guessField.disabled = true;
             guessSubmit.disabled = true;
-            resett.style.backgroundColor = 'yellow';
-            resett.addEventListener('click', resetGame);
+            resett.style.backgroundColor = "yellow";
+            resett.addEventListener("click", resetGame);
         }
 
         function resetGame() {
             guessCount = 1;
 
-            const resetParas = document.querySelectorAll('.resultParas p');
+            const resetParas = document.querySelectorAll(".resultParas p");
             for (let i = 0; i < resetParas.length; i++) {
-                resetParas[i].textContent = '';
+                resetParas[i].textContent = "";
             }
 
-            resett.style.backgroundColor = 'black';
+            resett.style.backgroundColor = "black";
             resett.disabled = true;
             guessField.disabled = false;
             guessSubmit.disabled = false;
-            guessField.value = '';
+            guessField.value = "";
             guessField.focus();
 
-            lastResult.style.backgroundColor = 'black';
+            lastResult.style.backgroundColor = "black";
 
             randomNumber = Math.floor(Math.random() * 100) + 1;
         }
